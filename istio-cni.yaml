@@ -1,0 +1,17 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istio-cni
+spec:
+  profile: empty # Do not include other components
+  components:
+    cni:
+      enabled: true
+  values:
+    cni:
+      excludeNamespaces:
+        - kube-system
+      logLevel: info
+      privileged: true
+      ambient:
+        enabled: true
